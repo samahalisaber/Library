@@ -17,5 +17,9 @@ pipeline {
                 sh 'docker push docker.io/samahalisaber/my-ui-library:$BUILD_NUMBER'
             }
         }
+        stage('Deploy') {
+            steps {
+                sed -i "s|@BUILD_NUMBER@|${BUILD_NUMBER}|g" yamls/deploy.yaml
+                 sh 'kubectl apply -f yamls/deploy.yaml -n python'
     }
 }
