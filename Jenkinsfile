@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sed -i "s|@BUILD_NUMBER@|${BUILD_NUMBER}|g" yamls/deploy.yaml
-                 sh 'kubectl apply -f yamls/deploy.yaml -n python'
+                sed -i "s|@BUILD_NUMBER@|${BUILD_NUMBER}|g" ./deploy.yaml
+                 sh 'kubectl apply -f ./deploy.yaml'
     }
 }
